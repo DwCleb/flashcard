@@ -6,9 +6,9 @@ import {
   FlatList,
 } from 'react-native'
 import PropTypes from 'prop-types';
-import { StackActions } from 'react-navigation';
 import DeckCard from 'components/DeckCard'
 import VerticalSlideAnimation from 'components/vertical-slide-animation'
+import Button from 'components/Button'
 import styles from './styles'
 
 const MOCK = [
@@ -42,13 +42,18 @@ class Decks extends Component {
   _rendeItem = ({ item, index }) => {
     console.tron.log(item, index)
     return (
-      <DeckCard data={item} onPress={() => this.cardScreen(item) }/>
+      <DeckCard data={item} onPress={() => this.cardScreen(item)} />
     )
   }
 
   cardScreen = (card) => {
     const { navigation } = this.props;
     navigation.navigate('DeckDetail', { card })
+  }
+
+  onNavigate = (screen) => {
+    const { navigation } = this.props;
+    navigation.navigate(screen)
   }
 
   render() {
@@ -65,6 +70,9 @@ class Decks extends Component {
             numColumns={1}
             accessibilityLabel="Card List"
           />
+          <View style={styles.button}>
+            <Button text="New Deck" onPress={() => this.onNavigate("NewDeck")} />
+          </View>
         </VerticalSlideAnimation>
       </View>
     )

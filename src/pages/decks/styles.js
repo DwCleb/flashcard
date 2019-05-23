@@ -12,7 +12,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.black,
     fontSize: scale(22),
-  }
+  },
+  button: {
+    alignItems: 'center',
+    marginVertical: 20,
+  },
 })
 
 export default styles

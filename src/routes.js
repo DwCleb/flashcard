@@ -31,7 +31,6 @@ const MainTab = TabNavigator({
       style: {
         backgroundColor: colors.primary,
         height: scale(60),
-        marginBottom: metrics.safeArea,
         fontWeight: 'bold',
         textAlign: 'center',
         alignContent: 'center',
@@ -43,7 +42,7 @@ const MainTab = TabNavigator({
         height: scale(5),
       },
     },
-  });
+  })
 
 MainTab.navigationOptions = ({ navigation }) => {
   const { routeName } = navigation.state.routes[navigation.state.index];
@@ -54,15 +53,12 @@ MainTab.navigationOptions = ({ navigation }) => {
   return {
     headerTitle,
   };
-};
-
-const Stack = StackNavigator({
+}
+const Screens = StackNavigator({
   DeckDetail: { screen: DeckDetail },
   AddCard: { screen: AddCard },
   Quiz: { screen: Quiz },
-}, {
-
-  });
+})
 
 const Main = StackNavigator({
   Tab: { screen: MainTab },
@@ -85,7 +81,7 @@ const Main = StackNavigator({
       headerTintColor: colors.white,
       title: 'Main',
     }),
-  });
+  })
 
 const MainNavigator = StackNavigator({
   Main,
@@ -94,7 +90,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: () => ({
       header: null,
     }),
-  });
+  })
 
-const Routes = MainNavigator;
-export default Routes;
+const Routes = MainNavigator
+export default Routes

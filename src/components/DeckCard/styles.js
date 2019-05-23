@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     height: scale(120),
     padding: metrics.base.padding,
     paddingRight: 0,
-    borderWidth: scale(0.5),
+    borderWidth: scale(0.8),
     borderColor: colors.grey,
     flexDirection: 'column',
   },

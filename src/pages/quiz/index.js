@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import VerticalSlideAnimation from 'components/vertical-slide-animation'
 import BoxMessage from 'components/BoxMessage'
 import Button from 'components/Button'
@@ -117,8 +117,16 @@ class Quiz extends Component {
           )
         }
       </VerticalSlideAnimation>
-    );
+    )
   }
+}
+
+Quiz.propTypes = {
+  card: PropTypes.shape({
+    cardSelected: PropTypes.shape({
+      questions: PropTypes.array.isRequired,
+    }),
+  }).isRequired,
 }
 
 const mapStateToProps = state => ({

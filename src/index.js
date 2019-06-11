@@ -1,17 +1,17 @@
-import React, { Fragment, Component } from 'react';
-import { Provider } from 'react-redux';
+import React, { Fragment, Component } from 'react'
+import { Provider } from 'react-redux'
 import {
   YellowBox,
   StatusBar,
-} from 'react-native';
+} from 'react-native'
 
-import 'config/reactotron';
-import store from 'store';
-import Routes from 'routes';
-import { colors } from 'theme';
+import 'config/reactotron'
+import store from 'store'
+import Routes from 'routes'
+import { colors } from 'theme'
 
-YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
-YellowBox.ignoreWarnings(['Warning: jumpToIndex(...) is deprecated', '']);
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader'])
+YellowBox.ignoreWarnings(['Warning: jumpToIndex(...) is deprecated', ''])
 
 export default class App extends Component {
 
@@ -24,6 +24,6 @@ export default class App extends Component {
           <Routes />
         </Fragment>
       </Provider>
-    );
+    )
   }
 }

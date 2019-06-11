@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   TouchableOpacity,
   Text,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { colors } from 'theme';
-import PropTypes from 'prop-types';
-import styles from './styles';
+} from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import { colors } from 'theme'
+import PropTypes from 'prop-types'
+import styles from './styles'
 
 class DeckCard extends Component {
 
@@ -44,7 +44,11 @@ class DeckCard extends Component {
 }
 
 DeckCard.propTypes = {
-  title: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    questions: PropTypes.array.isRequired,
+  }).isRequired,
+  onPress: PropTypes.function,
 }
 
 export default DeckCard

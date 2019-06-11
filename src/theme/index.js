@@ -1,11 +1,7 @@
-import colors from './colors';
-import metrics from './metrics';
-import general from './general';
-// import pickerSelectStyles from './pickerSelectStyles';
+import colors from './colors'
+import metrics from './metrics'
 
 export {
   colors,
   metrics,
-  general,
-  // pickerSelectStyles,
-};
+}

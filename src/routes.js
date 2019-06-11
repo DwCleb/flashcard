@@ -1,9 +1,7 @@
-import React from 'react'
-import { Platform, AsyncStorage } from 'react-native'
+
 import {
   StackNavigator,
   TabNavigator,
-  TabBarBottom,
   TabBarTop,
 } from 'react-navigation'
 
@@ -45,14 +43,14 @@ const MainTab = TabNavigator({
   })
 
 MainTab.navigationOptions = ({ navigation }) => {
-  const { routeName } = navigation.state.routes[navigation.state.index];
+  const { routeName } = navigation.state.routes[navigation.state.index]
 
   // You can do whatever you like here to pick the title based on the route name
-  const headerTitle = routeName;
+  const headerTitle = routeName
 
   return {
     headerTitle,
-  };
+  }
 }
 const Screens = StackNavigator({
   DeckDetail: { screen: DeckDetail },

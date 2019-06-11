@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Animated, StyleSheet, Easing, ViewStyle } from 'react-native'
-import { scale } from '../../theme/metrics';
+import { scale } from 'theme/metrics'
 
 type Props = {
   delay: number,

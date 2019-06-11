@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, } from 'react-native'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import VerticalSlideAnimation from 'components/vertical-slide-animation'
 import Button from 'components/Button'
 import styles from './styles'
@@ -13,14 +13,14 @@ class DeckDetail extends Component {
     title: navigation.getParam('title'),
   })
 
-  onNavigate = (screen, title=null) => {
+  onNavigate = (screen, title = null) => {
     const { navigation } = this.props
     navigation.navigate(screen, { title })
   }
 
   render() {
-    const { card } = this.props 
-    const { cardSelected } = card 
+    const { card } = this.props
+    const { cardSelected } = card
     const { title, questions } = cardSelected
 
     return (
@@ -63,6 +63,16 @@ class DeckDetail extends Component {
 }
 
 DeckDetail.propTypes = {
+  card: PropTypes.shape({
+    cardSelected: PropTypes.shape({
+      title: PropTypes.string,
+      questions: PropTypes.array,
+    }),
+  }).isRequired,
+  navigation: PropTypes.shape({
+    getParam: PropTypes.function,
+    navigate: PropTypes.function,
+  }).isRequired,
 }
 
 const mapStateToProps = state => ({

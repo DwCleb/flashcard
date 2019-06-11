@@ -18,7 +18,7 @@ export default {
   blueD: '#1d8eb8',
   success: '#5CB85C',
   lightGreen: '#9DCA83',
-  danger: '#C15B58', // '#E37A7A',
+  danger: '#C15B58',
 
   transparent: 'transparent',
   darkTransparent: 'rgba(0, 0, 0, 0.6)',
@@ -26,4 +26,4 @@ export default {
   whiteTransparent: 'rgba(255, 255, 255, 0.6)',
   prixpay: 'rgba(0, 54, 93, 1)',
   facebook: '#4267b2',
-};
+}

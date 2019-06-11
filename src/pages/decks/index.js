@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import {
   View,
-  Text,
-  AsyncStorage,
+  ScrollView,
   FlatList,
 } from 'react-native'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import DeckCard from 'components/DeckCard'
 import VerticalSlideAnimation from 'components/vertical-slide-animation'
 import Button from 'components/Button'
@@ -45,7 +44,7 @@ class Decks extends Component {
   }
 
   onNavigate = (screen) => {
-    const { navigation } = this.props;
+    const { navigation } = this.props
     navigation.navigate(screen)
   }
 
@@ -54,7 +53,11 @@ class Decks extends Component {
     const { cards } = card
 
     return (
-      <View style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+      >
         <VerticalSlideAnimation>
           <FlatList
             ref="listRef"
@@ -65,18 +68,27 @@ class Decks extends Component {
             renderItem={this._rendeItem}
             numColumns={1}
             accessibilityLabel="Card List"
+            refreshing
           />
           <View style={styles.button}>
             <Button text="New Deck" onPress={() => this.onNavigate("NewDeck")} />
           </View>
         </VerticalSlideAnimation>
-      </View>
+      </ScrollView>
     )
   }
 }
 
 Decks.propTypes = {
-};
+  loadCards: PropTypes.function,
+  setSelectedCard: PropTypes.function,
+  card: PropTypes.shape({
+    cards: PropTypes.array,
+  }),
+  navigation: PropTypes.shape({
+    navigate: PropTypes.function,
+  }),
+}
 
 const mapStateToProps = state => ({
   card: state.card,

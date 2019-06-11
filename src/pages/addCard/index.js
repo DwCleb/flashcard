@@ -5,23 +5,35 @@ import {
   TextInput,
   Alert,
 } from 'react-native'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import Button from 'components/Button'
 import styles from './styles'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Creators as CardActions } from 'store/ducks/card'
+
 
 class AddCard extends Component {
 
   static navigationOptions = () => ({
     title: "Add Card",
-  });
+  })
+
+  componentWillMount() {
+    const { navigation } = this.props
+    const deckTitle = navigation.getParam('title')
+    this.setState({ deckTitle })
+  }
 
   state = {
     question: '',
     answer: '',
+    deckTitle: '',
   }
 
-  addCard = () => {
+  addNewCard = async () => {
     const { question, answer } = this.state
+    const { addCard } = this.props
 
     if (question.length < 1 || answer.length < 1) {
       Alert.alert(
@@ -36,7 +48,49 @@ class AddCard extends Component {
       return false
     }
 
+    const deck = await this.mountDeck()
+
+    await addCard(deck)
+
+    Alert.alert(
+      'Card added!',
+      `Your card was created.`,
+      [
+        { text: 'Ok', onPress: () => this.redirect() },
+      ],
+      { cancelable: false, onPress: () => this.redirect() },
+    )
+
+  }
+
+  mountDeck = () => {
+    const { card } = this.props
+    const { deckTitle, question, answer } = this.state
+
+    const { cards } = card
+
+    const newDeck = cards.filter(card => {
+      let auxCard = card
+
+      if (auxCard.title == deckTitle.title) {
+        const newQuestion = {
+          question,
+          answer,
+        }
+        auxCard.questions.push(newQuestion)
+      }
+      return auxCard
+    })
+
+    return newDeck
+  }
+
+  redirect = () => {
     this.clearFields
+    const { deckTitle } = this.state
+    const { title } = deckTitle
+    const { navigation } = this.props
+    navigation.navigate('Decks')
   }
 
   clearFields = () => {
@@ -78,7 +132,7 @@ class AddCard extends Component {
           />
         </View>
         <View style={styles.button}>
-          <Button text="Submit" style={{ width: '50%' }} onPress={this.addCard} />
+          <Button text="Submit" style={{ width: '50%' }} onPress={this.addNewCard} />
         </View>
       </View>
     )
@@ -86,6 +140,16 @@ class AddCard extends Component {
 }
 
 AddCard.propTypes = {
-};
 
-export default AddCard
+}
+
+const mapStateToProps = state => ({
+  card: state.card,
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators(CardActions, dispatch)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddCard)

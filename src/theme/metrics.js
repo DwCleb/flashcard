@@ -1,7 +1,7 @@
-import { Dimensions, Platform } from 'react-native';
+import { Dimensions, Platform } from 'react-native'
 
 const { width, height } = Dimensions.get('window')
-//Guideline sizes are based on iPhone 6 screen
+// Guideline sizes are based on iPhone 6 screen
 const guidelineBaseWidth = 375
 // por enquanto não vamos usar o scale no projeto.
 export const scale = size => (width / guidelineBaseWidth) * size
@@ -10,8 +10,8 @@ const statusBarHeight =
   Platform.OS === 'ios'
     ? scale(20)
     : StatusBar.currentHeight
-    ? StatusBar.currentHeight
-    : 0
+      ? StatusBar.currentHeight
+      : 0
 
 const safeArea =
   Platform.OS === 'ios'

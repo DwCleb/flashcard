@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
-import { metrics, colors, general } from 'theme';
-import { scale } from '../../theme/metrics';
+import { metrics, colors } from 'theme'
+import { scale } from '../../theme/metrics'
 
 const styles = StyleSheet.create({
   container: {
@@ -53,6 +53,6 @@ const styles = StyleSheet.create({
     marginTop: scale(-22),
   },
   
-});
+})
 
-export default styles;
+export default styles

@@ -14,6 +14,18 @@ class Button extends Component {
     typeStyle: {},
   }
 
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    style: PropTypes.object,
+    onPress: PropTypes.function,
+    type: PropTypes.string.isRequired,
+    theme: PropTypes.string.isRequired,
+    navigateScreen: PropTypes.string.isRequired,
+    navigation: PropTypes.shape({
+      navigate: PropTypes.function,
+    }).isRequired,
+  }
+  
   componentDidMount() {
     this.getTheme()
     this.getType()
@@ -151,7 +163,6 @@ class Button extends Component {
   }
 }
 
-Button.propTypes = {
-}
+
 
 export default Button

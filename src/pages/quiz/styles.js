@@ -1,6 +1,6 @@
 
 import { StyleSheet } from 'react-native'
-import { metrics, general } from 'theme'
+import { metrics } from 'theme'
 import { scale } from 'theme/metrics'
 
 const styles = StyleSheet.create({

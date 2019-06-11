@@ -40,9 +40,28 @@ export function* loadCards() {
 export function* setSelectedCard(action) {
   try {
     const cardSelected = action.payload.card
-    console.tron.log(cardSelected)
 
     yield put(CardActions.cardSelected(cardSelected))
+  } catch (err) {
+    yield put(CardActions.setMessage(err.response.data.message))
+  }
+}
+
+export function* addDeck(action) {
+  try {
+    const { title } = action.payload
+
+    yield put(CardActions.pushDeck(title))
+  } catch (err) {
+    yield put(CardActions.setMessage(err.response.data.message))
+  }
+}
+
+export function* addCard(action) {
+  try {
+    const { deck } = action.payload
+
+    yield put(CardActions.pushCard(deck))
   } catch (err) {
     yield put(CardActions.setMessage(err.response.data.message))
   }

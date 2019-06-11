@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
   },
+  width: {
+    width: metrics.screen.width,
+    marginHorizontal: scale(20),
+  },
   content: {
     backgroundColor: '#F7F4F4',
     borderColor: '#030303',
@@ -65,22 +69,6 @@ const styles = StyleSheet.create({
     height: scale(50),
     flex: 1,
     flexDirection: 'row',
-  },
-  addCard: {
-    width: '50%',
-    height: '100%',
-    borderBottomLeftRadius: scale(24),
-    borderBottomRightRadius: 0,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
-  },
-  startQuiz: {
-    width: '50%',
-    height: '100%',
-    borderBottomRightRadius: scale(24),
-    borderBottomLeftRadius: 0,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
   },
 })
 

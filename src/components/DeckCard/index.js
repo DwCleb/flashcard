@@ -11,8 +11,7 @@ import styles from './styles';
 
 class DeckCard extends Component {
 
-  callback = (callback: Function) => {
-
+  callback = (callback) => {
     if (typeof callback === 'function') {
       callback()
     }
@@ -36,7 +35,7 @@ class DeckCard extends Component {
             <Text style={styles.card}>cards</Text>
           </View>
           <View style={styles.cardIcon}>
-            <Icon name={'chevron-right'} size={15} color={colors.secondary} />
+            <Icon name={'chevron-right'} size={15} color={colors.black} />
           </View>
         </View>
       </TouchableOpacity>

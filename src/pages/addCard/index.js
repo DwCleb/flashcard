@@ -31,8 +31,19 @@ class AddCard extends Component {
           { text: 'Ok' },
         ],
         { cancelable: false },
-      );
+      )
+
+      return false
     }
+
+    this.clearFields
+  }
+
+  clearFields = () => {
+    this.setState({
+      question: '',
+      answer: '',
+    })
   }
 
   toogleQuestion = (question) => this.setState({ question })

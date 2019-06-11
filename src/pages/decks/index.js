@@ -10,32 +10,20 @@ import DeckCard from 'components/DeckCard'
 import VerticalSlideAnimation from 'components/vertical-slide-animation'
 import Button from 'components/Button'
 import styles from './styles'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Creators as CardActions } from 'store/ducks/card'
 
-const MOCK = [
-  {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
-  },
-  {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  }
-]
 class Decks extends Component {
+
+  componentDidMount() {
+    this.getCards()
+  }
+
+  getCards = async () => {
+    const { loadCards } = this.props
+    await loadCards()
+  }
 
   _keyExtractor = index => index.toString()
 
@@ -46,9 +34,14 @@ class Decks extends Component {
     )
   }
 
-  cardScreen = (card) => {
-    const { navigation } = this.props;
-    navigation.navigate('DeckDetail', { card })
+  cardScreen = async (card) => {
+    const { navigation, setSelectedCard } = this.props
+
+    await setSelectedCard(card)
+
+    const { title } = card
+
+    navigation.navigate('DeckDetail', { title })
   }
 
   onNavigate = (screen) => {
@@ -57,6 +50,9 @@ class Decks extends Component {
   }
 
   render() {
+    const { card } = this.props
+    const { cards } = card
+
     return (
       <View style={styles.container}>
         <VerticalSlideAnimation>
@@ -65,7 +61,7 @@ class Decks extends Component {
             showsHorizontalScrollIndicator={false}
             bounces={false}
             keyExtractor={this._keyExtractor}
-            data={MOCK}
+            data={cards}
             renderItem={this._rendeItem}
             numColumns={1}
             accessibilityLabel="Card List"
@@ -82,4 +78,13 @@ class Decks extends Component {
 Decks.propTypes = {
 };
 
-export default Decks
+const mapStateToProps = state => ({
+  card: state.card,
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators(CardActions, dispatch)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Decks)

@@ -1,17 +1,16 @@
-import { all, takeLatest } from 'redux-saga/effects';
+import { all, takeLatest } from 'redux-saga/effects'
 
-import { Types as UserTypes } from 'store/ducks/user';
+import { Types as CardTypes } from 'store/ducks/card'
 
 import {
-  cleanUserInfo,
-  cleanUserMessage,
-} from './user';
+  loadCards,
+  setSelectedCard,
+} from './card'
 
 export default function* rootSaga() {
   return yield all([
-    // User
-    takeLatest(UserTypes.CLEAN_USER_INFO, cleanUserInfo),
-    takeLatest(UserTypes.CLEAN_MESSAGE, cleanUserMessage),
-
-  ]);
+    // Card
+    takeLatest(CardTypes.LOAD_CARDS, loadCards),
+    takeLatest(CardTypes.SET_SELECTED_CARD, setSelectedCard),
+  ])
 }

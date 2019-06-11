@@ -2,48 +2,20 @@ import colors from './colors';
 import metrics from './metrics';
 
 export default {
-  pickerStyle: {
-    width: '100%',
-  },
-
-  pickerTextStyle:{
-    fontSize: 15,
-    borderWidth: 1,
-    borderColor: colors.light,
-    borderRadius: metrics.baseRadius,
-    padding: 10,
-    paddingHorizontal: metrics.basePadding,
-  },
-
-  pickerDropdownStyle: {
-    width: '78%',
-    borderWidth: 1,
-    borderColor: colors.light,
-  },
-
-  pickerDropdownTextStyle: {
-    fontSize: 15,
-    color: colors.dark,
-  },
-
-  pickerDropdownTextHighlightStyle: {
-    backgroundColor: colors.primary,
-    color: colors.white,
-  },
-
+  
   title: {
     textAlign: 'center',
     color: colors.darker,
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: metrics.baseMargin,
+    marginBottom: metrics.base.margin,
   },
 
   input: {
     backgroundColor: colors.white,
-    borderRadius: metrics.baseRadius,
+    borderRadius: metrics.base.radius,
     height: 40,
-    paddingHorizontal: metrics.basePadding,
+    paddingHorizontal: metrics.base.padding,
     borderWidth: 1,
     borderColor: colors.light,
     width: '100%',
@@ -51,57 +23,57 @@ export default {
 
   inputHalf: {
     backgroundColor: colors.white,
-    borderRadius: metrics.baseRadius,
+    borderRadius: metrics.base.radius,
     height: 40,
-    paddingHorizontal: metrics.basePadding,
+    paddingHorizontal: metrics.base.padding,
     borderWidth: 1,
     borderColor: colors.light,
     width: metrics.screenWidth * 0.34,
-    left: -metrics.basePadding,
-    marginHorizontal: metrics.basePadding,
+    left: -metrics.base.padding,
+    marginHorizontal: metrics.base.padding,
   },
 
   inputDDD: {
     backgroundColor: colors.white,
-    borderRadius: metrics.baseRadius,
+    borderRadius: metrics.base.radius,
     height: 40,
-    paddingHorizontal: metrics.basePadding,
+    paddingHorizontal: metrics.base.padding,
     borderWidth: 1,
     borderColor: colors.light,
     width: metrics.screenWidth * 0.20,
-    left: -(metrics.basePadding - 15),
-    marginHorizontal: metrics.basePadding - 15,
+    left: -(metrics.base.padding - 15),
+    marginHorizontal: metrics.base.padding - 15,
   },
 
   inputTelephone: {
     backgroundColor: colors.white,
-    borderRadius: metrics.baseRadius,
+    borderRadius: metrics.base.radius,
     height: 40,
-    paddingHorizontal: metrics.basePadding,
+    paddingHorizontal: metrics.base.padding,
     borderWidth: 1,
     borderColor: colors.light,
     width: metrics.screenWidth * 0.59,
-    left: -metrics.basePadding * 0.8,
-    marginHorizontal: metrics.basePadding - 10,
+    left: -metrics.base.padding * 0.8,
+    marginHorizontal: metrics.base.padding - 10,
   },
 
   inputTitle: {
     fontSize: 15,
     color: colors.dark,
-    marginTop: metrics.baseMargin,
+    marginTop: metrics.base.margin,
   },
 
   inputSubtitle: {
     fontSize: 9,
     color: colors.dark,
-    marginTop: metrics.baseMargin - 10,
+    marginTop: metrics.base.margin - 10,
     textAlign: 'center',
   },
 
   link: {
-    marginTop: metrics.baseMargin * 2,
+    marginTop: metrics.base.margin * 2,
     alignSelf: 'center',
-    paddingHorizontal: metrics.basePadding * 2,
+    paddingHorizontal: metrics.base.padding * 2,
   },
 
   linkText: {
@@ -118,9 +90,9 @@ export default {
 
   button: {
     backgroundColor: colors.darker,
-    borderRadius: metrics.baseRadius,
+    borderRadius: metrics.base.radius,
     height: 50,
-    marginTop: metrics.baseMargin,
+    marginTop: metrics.base.margin,
     justifyContent: 'center',
     alignItems: 'center',
     width: metrics.screenWidth * 0.8,
@@ -128,13 +100,13 @@ export default {
 
   buttonHalf: {
     backgroundColor: colors.darker,
-    borderRadius: metrics.baseRadius,
+    borderRadius: metrics.base.radius,
     height: 50,
-    marginTop: metrics.baseMargin,
+    marginTop: metrics.base.margin,
     justifyContent: 'center',
     alignItems: 'center',
     width: metrics.screenWidth * 0.34,
-    paddingHorizontal: metrics.basePadding,
+    paddingHorizontal: metrics.base.padding,
   },
 
   buttonText: {
@@ -144,21 +116,22 @@ export default {
   },
 
   messageView: {
+    marginVertical: 30,
     backgroundColor: colors.white,
     borderWidth: 1,
-    padding: metrics.basePadding * 1.2,
-    borderRadius: metrics.baseRadius * 2,
+    padding: metrics.base.padding * 1.2,
+    borderRadius: metrics.base.radius * 2,
     borderColor: colors.light,
     justifyContent: 'center',
     alignSelf: 'center',
-    width: metrics.screenWidth * 0.7,
-    height: 100,
-    marginTop: metrics.baseMargin * 2,
+    width: metrics.screen.width * 0.7,
+    marginTop: metrics.base.margin * 2,
   },
-
+  
   messageText: {
     textAlign: 'center',
     color: colors.darker,
-    fontSize: 15,
+    fontSize: 18,
+    marginVertical: 5,
   },
 };

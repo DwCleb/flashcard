@@ -23,7 +23,7 @@ export default {
   transparent: 'transparent',
   darkTransparent: 'rgba(0, 0, 0, 0.6)',
   blackTransparent: 'rgba(0, 0, 0, 0.2)',
-  whiteTransparent: 'rgba(255, 255, 255, 0.3)',
+  whiteTransparent: 'rgba(255, 255, 255, 0.6)',
   prixpay: 'rgba(0, 54, 93, 1)',
   facebook: '#4267b2',
 };

@@ -12,7 +12,7 @@ import NewDeck from 'pages/newDeck'
 import DeckDetail from 'pages/deckDetail'
 import AddCard from 'pages/addCard'
 import Quiz from 'pages/quiz'
-import { colors, metrics } from 'theme'
+import { colors } from 'theme'
 import { scale } from 'theme/metrics'
 
 const MainTab = TabNavigator({
@@ -35,7 +35,7 @@ const MainTab = TabNavigator({
         textAlign: 'center',
         alignContent: 'center',
         justifyContent: 'center',
-        fontSize: scale(15)
+        fontSize: scale(18),
       },
       indicatorStyle: {
         backgroundColor: colors.secondary,

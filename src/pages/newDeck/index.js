@@ -30,6 +30,10 @@ class NewDeck extends Component {
     }
   }
 
+  clearFields = () => {
+    this.setState({ deckTitle: '' })
+  }
+
   toogleValue = (title) => {
     this.setState({
       deckTitle: title
@@ -51,7 +55,7 @@ class NewDeck extends Component {
           />
         </View>
         <View style={styles.button}>
-          <Button text="Submit" style={{ width: '50%' }} onPress={this.addNewDeck} />
+          <Button text="Submit" onPress={this.addNewDeck} />
         </View>
       </View>
     )

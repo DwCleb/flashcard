@@ -7,15 +7,15 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 
 const BoxMessage = (props) => {
-  const { isVisible, message } = props;
+  const { isVisible, correct, incorrect } = props;
   return (
     <View>
-      { isVisible
+      {isVisible
         ? (
           <View style={styles.messageView}>
-            <Text style={styles.messageText}>
-              {message}
-            </Text>
+            <Text style={styles.messageText}>You finish the test!</Text>
+            <Text style={styles.messageText}>You answer correctly {correct} and incorrectly {incorrect} questions.</Text>
+            <Text style={styles.messageText}>You got {(correct * 100 / (correct + incorrect)).toFixed(0)}%</Text>
           </View>
         )
         : <Text />
@@ -25,7 +25,8 @@ const BoxMessage = (props) => {
 };
 
 BoxMessage.propTypes = {
-  message: PropTypes.string.isRequired,
+  correct: PropTypes.number.isRequired,
+  incorrect: PropTypes.number.isRequired,
   isVisible: PropTypes.bool.isRequired,
 };
 

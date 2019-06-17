@@ -1,18 +1,18 @@
 import { all, takeLatest } from 'redux-saga/effects'
 
-import { Types as CardTypes } from 'store/ducks/card'
+import { Types as FlashcardsTypes } from 'store/ducks/flashcard'
 
 import {
-  loadCards,
-  setSelectedCard,
+  loadDecks,
+  setSelectedDeck,
   addDeck,
-} from './card'
+} from './flashcard'
 
 export default function* rootSaga() {
   return yield all([
-    // Card
-    takeLatest(CardTypes.LOAD_CARDS, loadCards),
-    takeLatest(CardTypes.SET_SELECTED_CARD, setSelectedCard),
-    takeLatest(CardTypes.ADD_DECK, addDeck),
+    // FlashcardsTypes
+    takeLatest(FlashcardsTypes.LOAD_DECKS, loadDecks),
+    takeLatest(FlashcardsTypes.SET_SELECTED_DECK, setSelectedDeck),
+    takeLatest(FlashcardsTypes.ADD_DECK, addDeck),
   ])
 }

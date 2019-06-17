@@ -10,7 +10,7 @@ import Button from 'components/Button'
 import styles from './styles'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Creators as CardActions } from 'store/ducks/card'
+import { Creators as FlashcardsActions } from 'store/ducks/flashcard'
 
 class NewDeck extends Component {
 
@@ -60,10 +60,9 @@ class NewDeck extends Component {
 
   deckTitleExist = () => {
     const { deckTitle } = this.state
-    const { card } = this.props
-    const { cards } = card
+    const { decks } = this.props
 
-    const exists = cards.filter(card => card.title == deckTitle)
+    const exists = decks.filter(card => card.title == deckTitle)
 
     return (exists.length < 1) ? false : true
   }
@@ -108,14 +107,14 @@ class NewDeck extends Component {
 
 NewDeck.propTypes = {
   addDeck: PropTypes.function,
-  card: PropTypes.array,
+  decks: PropTypes.array,
 }
 
 const mapStateToProps = state => ({
-  card: state.card,
+  decks: state.flashcard.decks,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(CardActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators(FlashcardsActions, dispatch)
 
 export default connect(
   mapStateToProps,

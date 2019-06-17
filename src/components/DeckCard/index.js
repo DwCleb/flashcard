@@ -31,7 +31,7 @@ class DeckCard extends Component {
             <Text style={styles.cardTitle}>{title}</Text>
           </View>
           <View style={styles.cardNumbersContainer}>
-            <Text style={styles.cardNumbers}>{questions.length}</Text>
+            <Text style={styles.cardNumbers}>{questions == null ? 0 : questions.length}</Text>
             <Text style={styles.card}>cards</Text>
           </View>
           <View style={styles.cardIcon}>

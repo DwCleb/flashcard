@@ -8,7 +8,7 @@ import CardFlip from 'react-native-card-flip'
 import styles from './styles'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Creators as CardActions } from 'store/ducks/card'
+import { Creators as FlashcardsActions } from 'store/ducks/flashcard'
 
 class Quiz extends Component {
   static navigationOptions = () => ({
@@ -54,9 +54,9 @@ class Quiz extends Component {
       incorrect,
       answerIsVisible,
     } = this.state
-    const { card } = this.props
-    const { cardSelected } = card
-    const { questions } = cardSelected
+    const { decks } = this.props
+    const { deckSelected } = decks
+    const { questions } = deckSelected
 
     return (
       <VerticalSlideAnimation>
@@ -122,18 +122,18 @@ class Quiz extends Component {
 }
 
 Quiz.propTypes = {
-  card: PropTypes.shape({
-    cardSelected: PropTypes.shape({
+  decks: PropTypes.shape({
+    deckSelected: PropTypes.shape({
       questions: PropTypes.array.isRequired,
     }),
   }).isRequired,
 }
 
 const mapStateToProps = state => ({
-  card: state.card,
+  decks: state.flashcard,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(CardActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators(FlashcardsActions, dispatch)
 
 export default connect(
   mapStateToProps,

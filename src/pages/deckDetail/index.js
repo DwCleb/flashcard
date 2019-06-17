@@ -6,7 +6,7 @@ import Button from 'components/Button'
 import styles from './styles'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Creators as CardActions } from 'store/ducks/card'
+import { Creators as FlashcardsActions } from 'store/ducks/flashcard'
 
 class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -19,9 +19,9 @@ class DeckDetail extends Component {
   }
 
   render() {
-    const { card } = this.props
-    const { cardSelected } = card
-    const { title, questions } = cardSelected
+    const { flashcard } = this.props
+    const { deckSelected } = flashcard
+    const { title, questions } = deckSelected
 
     return (
       <View style={styles.container}>
@@ -34,7 +34,7 @@ class DeckDetail extends Component {
                     {title}
                   </Text>
                   <Text style={styles.cardNumbers}>
-                    {questions.length}
+                    {questions == null ? 0 : questions.length}
                   </Text>
                   <Text style={styles.card}>
                     cards
@@ -64,7 +64,7 @@ class DeckDetail extends Component {
 
 DeckDetail.propTypes = {
   card: PropTypes.shape({
-    cardSelected: PropTypes.shape({
+    deckSelected: PropTypes.shape({
       title: PropTypes.string,
       questions: PropTypes.array,
     }),
@@ -76,10 +76,10 @@ DeckDetail.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  card: state.card,
+  flashcard: state.flashcard,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(CardActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators(FlashcardsActions, dispatch)
 
 export default connect(
   mapStateToProps,

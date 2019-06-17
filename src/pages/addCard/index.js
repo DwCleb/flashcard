@@ -10,7 +10,7 @@ import Button from 'components/Button'
 import styles from './styles'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Creators as CardActions } from 'store/ducks/card'
+import { Creators as FlashcardsActions } from 'store/ducks/flashcard'
 
 
 class AddCard extends Component {
@@ -48,9 +48,9 @@ class AddCard extends Component {
       return false
     }
 
-    const deck = await this.mountDeck()
+    const card = await this.mountDeck()
 
-    await addCard(deck)
+    await addCard(card)
 
     Alert.alert(
       'Card added!',
@@ -64,12 +64,10 @@ class AddCard extends Component {
   }
 
   mountDeck = () => {
-    const { card } = this.props
+    const { flashcard } = this.props
     const { deckTitle, question, answer } = this.state
 
-    const { cards } = card
-
-    const newDeck = cards.filter(card => {
+    const newDeck = flashcard.decks.filter(card => {
       let auxCard = card
 
       if (auxCard.title == deckTitle.title) {
@@ -87,10 +85,8 @@ class AddCard extends Component {
 
   redirect = () => {
     this.clearFields
-    const { deckTitle } = this.state
-    const { title } = deckTitle
     const { navigation } = this.props
-    navigation.navigate('Decks')
+    navigation.goBack()
   }
 
   clearFields = () => {
@@ -144,10 +140,10 @@ AddCard.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  card: state.card,
+  flashcard: state.flashcard,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(CardActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators(FlashcardsActions, dispatch)
 
 export default connect(
   mapStateToProps,

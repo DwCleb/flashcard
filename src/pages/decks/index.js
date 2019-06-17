@@ -3,6 +3,7 @@ import {
   View,
   ScrollView,
   FlatList,
+  Text,
 } from 'react-native'
 import PropTypes from 'prop-types'
 import DeckCard from 'components/DeckCard'
@@ -11,17 +12,17 @@ import Button from 'components/Button'
 import styles from './styles'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Creators as CardActions } from 'store/ducks/card'
+import { Creators as FlashcardsActions } from 'store/ducks/flashcard'
 
 class Decks extends Component {
 
   componentDidMount() {
-    this.getCards()
+    this.getDecks()
   }
 
-  getCards = async () => {
-    const { loadCards } = this.props
-    await loadCards()
+  getDecks = async () => {
+    const { loadDecks } = this.props
+    await loadDecks()
   }
 
   _keyExtractor = index => index.toString()
@@ -29,16 +30,16 @@ class Decks extends Component {
   _rendeItem = ({ item, index }) => {
     console.tron.log(item, index)
     return (
-      <DeckCard data={item} onPress={() => this.cardScreen(item)} />
+      <DeckCard data={item} onPress={() => this.deckScreen(item)} />
     )
   }
 
-  cardScreen = async (card) => {
-    const { navigation, setSelectedCard } = this.props
+  deckScreen = async (deck) => {
+    const { navigation, setSelectedDeck } = this.props
+    console.tron.log("CLICK", deck)
+    await setSelectedDeck(deck)
 
-    await setSelectedCard(card)
-
-    const { title } = card
+    const { title } = deck
 
     navigation.navigate('DeckDetail', { title })
   }
@@ -49,8 +50,7 @@ class Decks extends Component {
   }
 
   render() {
-    const { card } = this.props
-    const { cards } = card
+    const { decks } = this.props
 
     return (
       <ScrollView
@@ -59,17 +59,22 @@ class Decks extends Component {
         showsVerticalScrollIndicator={false}
       >
         <VerticalSlideAnimation>
-          <FlatList
-            ref="listRef"
-            showsHorizontalScrollIndicator={false}
-            bounces={false}
-            keyExtractor={this._keyExtractor}
-            data={cards}
-            renderItem={this._rendeItem}
-            numColumns={1}
-            accessibilityLabel="Card List"
-            refreshing
-          />
+          { decks.length > 0 
+            ? (
+              <FlatList
+                ref="listRef"
+                showsHorizontalScrollIndicator={false}
+                bounces={false}
+                keyExtractor={this._keyExtractor}
+                data={decks}
+                renderItem={this._rendeItem}
+                numColumns={1}
+                accessibilityLabel="Card List"
+                refreshing
+              />
+            )
+            : <Text> You new add decks </Text>
+          }
           <View style={styles.button}>
             <Button text="New Deck" onPress={() => this.onNavigate("NewDeck")} />
           </View>
@@ -80,8 +85,8 @@ class Decks extends Component {
 }
 
 Decks.propTypes = {
-  loadCards: PropTypes.function,
-  setSelectedCard: PropTypes.function,
+  loadDecks: PropTypes.function,
+  setSelectedDeck: PropTypes.function,
   card: PropTypes.shape({
     cards: PropTypes.array,
   }),
@@ -91,10 +96,10 @@ Decks.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  card: state.card,
+  decks: state.flashcard.decks,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(CardActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators(FlashcardsActions, dispatch)
 
 export default connect(
   mapStateToProps,

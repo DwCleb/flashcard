@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import card from './card'
+import flashcard from './flashcard'
 
 export default combineReducers({
-  card,
+  flashcard,
 })

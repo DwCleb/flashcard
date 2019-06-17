@@ -19,7 +19,7 @@ yarn install
 - Android
 ```react-native run-android```
 
-- Run metro bundle individually
+- Run metro bundle individually (optional, you need close terminal window opened by react-native run-android if would like use this)
 ```react-native start --reset-cache```
 or
 ```npm start```

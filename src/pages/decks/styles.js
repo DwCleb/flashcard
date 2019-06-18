@@ -1,6 +1,6 @@
 
 import { StyleSheet } from 'react-native'
-import { colors } from 'theme'
+import { colors, metrics } from 'theme'
 import { scale } from 'theme/metrics'
 
 const styles = StyleSheet.create({
@@ -15,7 +15,14 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: metrics.base.margin,
+  },
+  noDecks: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginVertical: metrics.base.margin * 2,
+    fontSize: scale(20),
   },
 })
 

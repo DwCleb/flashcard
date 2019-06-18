@@ -47,14 +47,15 @@ class NewDeck extends Component {
     }
 
     await addDeck(deckTitle)
+    this.getDeckAdded()
 
     Alert.alert(
       'Deck added!',
       `Your ${deckTitle} deck was created.`,
       [
-        { text: 'Ok', onPress: () => this.redirect() },
+        { text: 'Ok', onPress: () => this.redirect(deckTitle) },
       ],
-      { cancelable: false, onPress: () => this.redirect() },
+      { cancelable: false },
     )
   }
 
@@ -67,10 +68,19 @@ class NewDeck extends Component {
     return (exists.length < 1) ? false : true
   }
 
-  redirect = () => {
+  getDeckAdded = async () => {
+    const { deckTitle } = this.state
+    const { decks, setSelectedDeck } = this.props
+
+    const newDeck = decks.filter(card => card.title == deckTitle)
+
+    await setSelectedDeck(newDeck[0])
+  }
+
+  redirect = (title) => {
     this.clearFields()
     const { navigation } = this.props
-    navigation.navigate('Decks')
+    navigation.navigate('DeckDetail', { title })
   }
 
   clearFields = () => {

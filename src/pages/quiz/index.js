@@ -47,6 +47,15 @@ class Quiz extends Component {
     this.card.flip()
   }
 
+  restart = () => {
+    this.setState({ now: 1 })
+  }
+
+  backToDeck = () => {
+    const { navigation } = this.props
+    navigation.goBack()
+  }
+
   render() {
     const {
       now,
@@ -64,12 +73,24 @@ class Quiz extends Component {
           ? (
             <VerticalSlideAnimation>
               <BoxMessage isVisible correct={correct} incorrect={incorrect} />
+              <View style={styles.buttons}>
+                <Button
+                  text="Restart"
+                  theme="void"
+                  onPress={() => this.restart()}
+                  style={styles.buttonStyle}
+                />
+                <Button
+                  text="Back to deck"
+                  onPress={() => this.backToDeck()}
+                />
+              </View>
             </VerticalSlideAnimation>
           )
           : (
             <VerticalSlideAnimation>
               <View style={styles.question}>
-                <Text  style={styles.questionText}>{`${now}/${questions.length}`}</Text>
+                <Text style={styles.questionText}>{`${now}/${questions.length}`}</Text>
               </View>
               <View style={styles.container}>
                 <View>

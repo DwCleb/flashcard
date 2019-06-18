@@ -64,6 +64,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
+  buttons: {
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  buttonStyle: {
+    marginVertical: metrics.base.margin,
+  }
 })
 
 export default styles

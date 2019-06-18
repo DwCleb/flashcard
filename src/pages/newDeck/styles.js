@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   title: {
     padding: metrics.base.padding,
-    marginHorizontal: metrics.base.margin * 4,
+    marginHorizontal: metrics.base.margin * 3,
     textAlign: 'center',
     color: colors.black,
     fontSize: scale(22),

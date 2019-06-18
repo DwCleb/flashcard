@@ -28,7 +28,6 @@ class Decks extends Component {
   _keyExtractor = index => index.toString()
 
   _rendeItem = ({ item, index }) => {
-    console.tron.log(item, index)
     return (
       <DeckCard data={item} onPress={() => this.deckScreen(item)} />
     )
@@ -36,7 +35,6 @@ class Decks extends Component {
 
   deckScreen = async (deck) => {
     const { navigation, setSelectedDeck } = this.props
-    console.tron.log("CLICK", deck)
     await setSelectedDeck(deck)
 
     const { title } = deck
@@ -73,7 +71,7 @@ class Decks extends Component {
                 refreshing
               />
             )
-            : <Text> You new add decks </Text>
+            : <Text style={styles.noDecks}> You need add decks </Text>
           }
           <View style={styles.button}>
             <Button text="New Deck" onPress={() => this.onNavigate("NewDeck")} />

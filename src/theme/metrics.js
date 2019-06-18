@@ -33,9 +33,9 @@ const screen = {
 }
 
 const base = {
-  padding: 20,
-  margin: 15,
-  radius: 5,
+  padding: scale(20),
+  margin: scale(20),
+  radius: scale(5),
 }
 
 // Used via Metrics.baseMargin

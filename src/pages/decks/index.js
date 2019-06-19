@@ -60,7 +60,7 @@ class Decks extends Component {
       if (notify != 1) {
         this.notif.cancelAll()
         await AsyncStorage.setItem('@Flashcards:notification', 1)
-        this.notif.scheduleNotif(10, 'minute') // the first notify in 5 minutes and after repeat by minutes
+        this.notif.scheduleNotif(300, 'minute') // the first notify in 5 minutes and after repeat by minutes
       }
     }
   }

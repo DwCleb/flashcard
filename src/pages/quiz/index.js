@@ -82,7 +82,7 @@ class Quiz extends PureComponent {
     this.notif.cancelAll()
 
     // schedule new Notification
-    this.notif.scheduleNotif(30, 'minute') // the first notify in 5 minutes and after repeat by minutes
+    this.notif.scheduleNotif(300, 'minute') // the first notify in 5 minutes and after repeat by minutes
 
     AsyncStorage.setItem('@Flashcards:notification', 1)
   }

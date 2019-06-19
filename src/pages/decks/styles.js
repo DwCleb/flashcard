@@ -24,6 +24,21 @@ const styles = StyleSheet.create({
     marginVertical: metrics.base.margin * 2,
     fontSize: scale(20),
   },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  textField: {
+    borderWidth: 1,
+    borderColor: "#AAAAAA",
+    margin: 5,
+    padding: 5,
+    width: "70%"
+  },
+  spacer: {
+    height: 10,
+  },
 })
 
 export default styles

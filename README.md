@@ -29,3 +29,7 @@ or
 ### Project
 
 This project use Redux, Saga, AsyncStorage, Ducks estructure
+
+### Information!
+
+The local notifications is setup to set the first notify in 5 minutes, after this the notify will repeat in interval by minutes. When the user finish the quiz the handle will bu called, cancel all notification and creating this new interval. (just setup to iPhone configurations)

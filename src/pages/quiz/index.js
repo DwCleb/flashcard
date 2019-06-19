@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import React, { PureComponent } from 'react'
+import { View, Text, AsyncStorage } from 'react-native'
 import PropTypes from 'prop-types'
 import VerticalSlideAnimation from 'components/vertical-slide-animation'
 import BoxMessage from 'components/BoxMessage'
@@ -9,17 +9,37 @@ import styles from './styles'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators as FlashcardsActions } from 'store/ducks/flashcard'
+import NotifService from 'NotifService'
+import appConfig from '../../../app.json'
 
-class Quiz extends Component {
+class Quiz extends PureComponent {
   static navigationOptions = () => ({
     title: "Quiz",
   })
 
-  state = {
-    now: 1,
-    correct: 0,
-    incorrect: 0,
-    answerIsVisible: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      senderId: appConfig.senderID,
+      now: 1,
+      correct: 0,
+      incorrect: 0,
+      answerIsVisible: false,
+      remember: true,
+    };
+
+    this.notif = new NotifService(this.onRegister.bind(this), this.onNotif.bind(this));
+  }
+
+  onRegister(token) {
+    Alert.alert("Registered !", JSON.stringify(token));
+    console.log(token);
+    this.setState({ registerToken: token.token, gcmRegistered: true });
+  }
+
+  onNotif(notif) {
+    console.log(notif);
+    Alert.alert(notif.title, notif.message);
   }
 
   showAnswer = () => {
@@ -56,10 +76,22 @@ class Quiz extends Component {
     navigation.goBack()
   }
 
+  updateRememberLocalNotification = () => {
+    this.setState({ remember: false })
+    // first cancell all exists notifications
+    this.notif.cancelAll()
+
+    // schedule new Notification
+    this.notif.scheduleNotif(30, 'minute') // the first notify in 5 minutes and after repeat by minutes
+
+    AsyncStorage.setItem('@Flashcards:notification', 1)
+  }
+
   render() {
     const {
       now,
       correct,
+      remember,
       incorrect,
       answerIsVisible,
     } = this.state
@@ -69,6 +101,10 @@ class Quiz extends Component {
 
     return (
       <VerticalSlideAnimation>
+        {now > questions.length && remember
+          ? this.updateRememberLocalNotification()
+          : <Text />
+        }
         {now > questions.length
           ? (
             <VerticalSlideAnimation>
@@ -86,6 +122,7 @@ class Quiz extends Component {
                 />
               </View>
             </VerticalSlideAnimation>
+
           )
           : (
             <VerticalSlideAnimation>

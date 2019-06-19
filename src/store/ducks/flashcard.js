@@ -9,11 +9,13 @@ export const Types = {
   ADD_CARD: 'flashcard/ADD_CARD',
   PUSH_CARD: 'flashcard/PUSH_CARD',
   SET_MESSAGE: 'flashcard/SET_MESSAGE',
+  SET_NOTIFICATION: 'flashcard/SET_NOTIFICATION',
 }
 
 const initialState = {
   decks: [],
   message: null,
+  notification: 0,
   deckSelected: {},
 }
 
@@ -49,6 +51,11 @@ export default function flashcard(state = initialState, action) {
       return {
         ...state,
         message: action.payload.message,
+      }
+    case Types.SET_NOTIFICATION:
+      return {
+        ...state,
+        notification: action.payload.notification,
       }
     default:
       return state
@@ -113,6 +120,13 @@ export const Creators = {
     type: Types.SET_MESSAGE,
     payload: {
       message,
+    }
+  }),
+
+  setNotification: notification => ({
+    type: Types.SET_NOTIFICATION,
+    payload: {
+      notification,
     }
   }),
 

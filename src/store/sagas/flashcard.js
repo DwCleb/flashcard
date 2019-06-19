@@ -9,9 +9,11 @@ import {
 export function* loadDecks() {
   try {
     const deck = yield AsyncStorage.getItem('@Flashcards:decks')
-
+    const notify = yield AsyncStorage.getItem('@Flashcards:notification')
+    console.tron.log("saga", notify)
     const decks = deck == null ? [] : JSON.parse(deck)
 
+    yield put(FlashcardsActions.setNotification(notify))
     yield put(FlashcardsActions.setDecks(decks))
   } catch (err) {
     yield put(FlashcardsActions.setMessage(err.response.data.message))

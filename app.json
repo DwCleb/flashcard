@@ -1,4 +1,5 @@
 {
   "name": "flashcard",
-  "displayName": "flashcard"
+  "displayName": "flashcard",
+  "senderID": "YOUR-GCM-ID"
 }
